@@ -15,6 +15,8 @@ The primary use is as the interface to the pyEfis electronic flight information
 project. It can also be used to interface flight simulator software to 'real'
 hardware such as instrumentation or custom flight controls.
 
+This is an experimental system, and is not suited for primary or backup flight/engine instrumentation or navigation. Use at your own risk.
+
 Installation
 ------------
 
