@@ -11,8 +11,9 @@ database file: "{CONFIG}/database.yaml"
 # file listed will overwrite data in previous files
 # Plugins may overwrite this data as well.
 initialization files:
-#  - "{CONFIG}/c170b.ini"
-#  - "{CONFIG}/fg_172.ini"
+  # - "{CONFIG}/default.ini"
+  # - "{CONFIG}/c170b.ini"
+  # - "{CONFIG}/fg_172.ini"
   - "{CONFIG}/Skyranger J2200.ini"
 
 # Connections:
@@ -40,11 +41,11 @@ connections:
     prompt: "FIX:"
     # If set quiting the command interpreter plugin
     # will end execution of the program
-    quit: no
+    quit: yes
 
   # FlightGear Flight Simulator Module
   # To start FlightGear with these paramaters, use the following command...
-  #   >fgfs --generic=socket,bi,10,localhost,5500,udp,fix_fgfs
+  #   >fgfs --generic=socket,out,10,localhost,5500,udp,fix_fgfs --generic=socket,in,1,,5501,udp,fix_sgfs
   # The fix_fgfs.xml file should be in the FG_ROOT/Protocols directory which should be
   # in one of the following locations...
   # LINUX: /usr/share/games/flightgear/
@@ -64,11 +65,14 @@ connections:
     # the same file.
     xml_file: fix_fgfs.xml
     # UDP Address and Ports used for communication to FlightGear.
-    host: localhost
+    # Host address to listen on
+    recv_host: localhost
     # port used for the -out argument to FlightGear
-    out_port: 5500
+    recv_port: 5500
+    # host address where FlightGear is running
+    send_host: localhost
     # port used for the -in argument to FlightGear
-    in_port: 5501
+    send_port: 5501
     # Update rate for sending data to FlightGear
     rate: 10  # updates / second
 
@@ -93,7 +97,7 @@ connections:
 
   # CAN-FIX
   canfix:
-    load: yes
+    load: no
     module: fixgw.plugins.canfix
     # See the python-can documentation for the meaning of these options
     interface: socketcan
@@ -113,6 +117,75 @@ connections:
   gui:
     load: no
     module: fixgw.plugins.gui
+
+  system:
+    load: yes
+    module: fixgw.plugins.system
+    time:
+      enable: yes
+      keys: # Database keys to write the time
+        gmt_seconds: TIMEZS
+        gmt_minutes: TIMEZM
+        gmt_hours: TIMEZH
+        gmt_string: TIMEZ
+        local_seconds:
+        local_minutes:
+        local_hours:
+        local_string: TIMEL
+      gmt_format: "%H:%M:%SZ" # Zulu time format string
+      local_format: "%H:%M:%S %Z" # Local time format string
+
+  # Set the annunciation flag bit on configured database items.
+  annunciate:
+    load: yes
+    module: fixgw.plugins.annunciate
+    # These are the defaults for all the items.  These settings can be
+    # overridden in each item definition
+    defaults:
+      # These are the auxilliary data values that will be used as the
+      # set points for the annunciation
+      low_aux_point: lowAlarm
+      high_aux_point: highAlarm
+      #low_aux_point: lowWarn
+      #high_aux_point: highWarn
+
+      # No annunciation until the value first climbs above the set point
+      start_bypass: no
+      # Bypasses the value on a condition
+      cond_bypass: None
+      #cond_bypass: TACH1 < 1000
+      # Once triggered the annunication will not clear until the value clears
+      # the setpoint plus the deadband.  This cuts down "flashing" annunications
+      # that are caused by values that are very near the set point.  The value
+      # can be in absolute units or in percentage of full range.
+      deadband: 1%
+    items:
+      - key: OILT1
+        start_bypass: yes
+        cond_bypass: TACH1 < 500
+        deadband: 4
+
+      - key: OILP1
+        start_bypass: yes
+        cond_bypass: TACH1 < 500
+        deadband: 2
+
+      - key: CHT11
+      - key: CHT12
+      - key: CHT13
+      - key: CHT14
+
+      - key: CURRNT
+      - key: VOLT
+        cond_bypass: TACH1 < 500
+
+      - key: FUELP1
+      - key: FUELQ1
+      - key: FUELQ2
+      - key: FUELQT
+
+      - key: OAT
+
 
   test1:
     load: no
@@ -176,7 +249,7 @@ connections:
     mosi: 24
     cs: 25
 
-  # if you want several button copy this configuration with different setting like this [conn_button2]
+  # if you want several buttons, copy this configuration with different settings like this [conn_button2]
   button1:
     load: no
     module: fixgw.plugins.rpi_button
@@ -206,9 +279,9 @@ connections:
       - function: max
         inputs: ["CHT11", "CHT12", "CHT13", "CHT14"]
         output: CHTMAX1
-     # - function: sum
-      #  inputs: ["FUELQ1", "FUELQ2"]
-       # output: FUELQT
+      - function: sum
+        inputs: ["FUELQ1", "FUELQ2"]
+        output: FUELQT
 
       # - function: min
       #   inputs: []
@@ -219,16 +292,20 @@ connections:
       # - function: TAS
       # - function: DALT
   dimmer:
-    load: yes
+    load: no
     module: fixgw.plugins.dimmer
-    DimmerDevice: /sys/class/backlight/backlight/brightness
+    DimmerDevice: /sys/class/backlight/intel_backlight/brightness
     Multiplier: 1.0
 
   grand_rapids_eis:
-    load: yes
+    load: no
     module: fixgw.plugins.grand_rapids_eis
-    port: /dev/ttyO1
-    model: 4000
+    port: /dev/ttyUSB0
+    model: 2004
+
+  stratux:
+    load: yes
+    module: fixgw.plugins.stratux
 
 # Logging configuration - See Python logging.config module documenation
 logging:
@@ -243,7 +320,7 @@ logging:
       #level: ERROR
       #level: CRITICAL
 
-      handlers: [stderr, file]
+      handlers: [stderr, syslog]
       propagate: True
 
   formatters:
@@ -267,4 +344,6 @@ logging:
 
     syslog:
       class: logging.handlers.SysLogHandler
+      address: /dev/log
+      facility: local6
       formatter: standard

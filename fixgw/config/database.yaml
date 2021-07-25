@@ -1,6 +1,6 @@
 variables:
   e: 1  # Engines
-  c: 6  # Cylinders
+  c: 4  # Cylinders
   a: 8  # Generic Analogs
   b: 16 # Generic Buttons
   r: 4  # Encoders
