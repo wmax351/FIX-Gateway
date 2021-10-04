@@ -184,6 +184,46 @@ connections:
     btnpin: 4
     rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
 
+  # if you want several button copy this configuration with different setting like this [conn_button2]
+  button1:
+    load: no
+    module: fixgw.plugins.rpi_button
+    btnkey: BTN2
+    btnpin: 4
+    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+
+  # if you want several button copy this configuration with different setting like this [conn_button2]
+  button1:
+    load: no
+    module: fixgw.plugins.rpi_button
+    btnkey: BTN3
+    btnpin: 4
+    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+
+  # if you want several button copy this configuration with different setting like this [conn_button2]
+  button1:
+    load: no
+    module: fixgw.plugins.rpi_button
+    btnkey: BTN4
+    btnpin: 4
+    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+
+  # if you want several button copy this configuration with different setting like this [conn_button2]
+  button1:
+    load: no
+    module: fixgw.plugins.rpi_button
+    btnkey: BTN5
+    btnpin: 4
+    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+
+  # if you want several button copy this configuration with different setting like this [conn_button2]
+  button1:
+    load: no
+    module: fixgw.plugins.rpi_button
+    btnkey: BTN6
+    btnpin: 4
+    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+
   # RAIS Protocol Interface
   rais:
     load: no
