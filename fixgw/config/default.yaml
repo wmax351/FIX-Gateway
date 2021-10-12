@@ -92,23 +92,23 @@ connections:
     idx29: MIX1,  MIX2,  x, x, x, x, x, x
 
   # CAN-FIX
-  canfix:
-    load: yes
-    module: fixgw.plugins.canfix
+#  canfix:
+#    load: no
+#    module: fixgw.plugins.canfix
     # See the python-can documentation for the meaning of these options
-    interface: socketcan
-    channel: vcan0
+#    interface: socketcan
+#    channel: vcan0
     #interface: serial
     #channel: /dev/ttyUSB0
 
     # This file controls the
-    mapfile: "{CONFIG}/canfix/map.yaml"
+#    mapfile: "{CONFIG}/canfix/map.yaml"
     # The following is our Node Identification Information
     # See the CAN-FIX Protocol Specification for more information
-    node: 145     # CAN-FIX Node ID
-    device: 145   # CAN-FIX Device Type
-    revision: 0   # Software Revision Number
-    model: 0      # Model Number
+#    node: 145     # CAN-FIX Node ID
+#    device: 145   # CAN-FIX Device Type
+#    revision: 0   # Software Revision Number
+#    model: 0      # Model Number
 
   gui:
     load: no
@@ -267,7 +267,7 @@ connections:
   grand_rapids_eis:
     load: yes
     module: fixgw.plugins.grand_rapids_eis
-    port: /dev/ttyO1
+    port: /dev/ttyO2
     model: 4000
 
 # Logging configuration - See Python logging.config module documenation
