@@ -20,7 +20,7 @@ setuptools.setup(
     description="FIX-Gateway: Gateway software for the Flight Information eXchange protocols",
     long_description=long_description,
     #long_description_content_type="text/x-rst",
-    url="https://github.com/makerplane/FIX-Gateway",
+    url="https://github.com/wmax351/FIX-Gateway",
     packages=setuptools.find_packages(exclude=["tests.*", "tests"]),
     #package_data = {'fixgw':['config/*']},
     install_requires = ['pyyaml','python-daemon', 'python-canfix'],

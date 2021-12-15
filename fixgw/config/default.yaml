@@ -91,7 +91,7 @@ connections:
     #idx28: PROP1, PROP2, x, x, x, x, x, x
     idx29: MIX1,  MIX2,  x, x, x, x, x, x
 
-   CAN-FIX
+#   CAN-FIX
   canfix:
     load: yes
     module: fixgw.plugins.canfix
@@ -178,50 +178,50 @@ connections:
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
   button1:
-    load: no
-    module: fixgw.plugins.rpi_button
+    load: yes
+    module: fixgw.plugins.bbb_button
     btnkey: BTN1
-    btnpin: 4
+    btnpin: P8_8
     rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-  button1:
-    load: no
-    module: fixgw.plugins.rpi_button
+  button2:
+    load: yes
+    module: fixgw.plugins.bbb_button
     btnkey: BTN2
-    btnpin: 4
+    btnpin: P8_9
     rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-  button1:
-    load: no
-    module: fixgw.plugins.rpi_button
+  button3:
+    load: yes
+    module: fixgw.plugins.bbb_button
     btnkey: BTN3
-    btnpin: 4
+    btnpin: P8_10
     rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-  button1:
-    load: no
-    module: fixgw.plugins.rpi_button
+  button4:
+    load: yes
+    module: fixgw.plugins.bbb_button
     btnkey: BTN4
-    btnpin: 4
+    btnpin: P9_12
     rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-  button1:
-    load: no
-    module: fixgw.plugins.rpi_button
+  button5:
+    load: yes
+    module: fixgw.plugins.bbb_button
     btnkey: BTN5
-    btnpin: 4
+    btnpin: P9_25
     rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-  button1:
-    load: no
-    module: fixgw.plugins.rpi_button
+  button6:
+    load: yes
+    module: fixgw.plugins.bbb_button
     btnkey: BTN6
-    btnpin: 4
+    btnpin: P9_30
     rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # RAIS Protocol Interface

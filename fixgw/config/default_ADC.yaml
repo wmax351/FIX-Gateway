@@ -91,9 +91,9 @@ connections:
     #idx28: PROP1, PROP2, x, x, x, x, x, x
     idx29: MIX1,  MIX2,  x, x, x, x, x, x
 
-   CAN-FIX
+#   CAN-FIX
   canfix:
-    load: no
+    load: yes
     module: fixgw.plugins.canfix
     # See the python-can documentation for the meaning of these options
     interface: socketcan
