@@ -93,7 +93,7 @@ connections:
 
 #   CAN-FIX
   canfix:
-    load: yes
+    load: no
     module: fixgw.plugins.canfix
     # See the python-can documentation for the meaning of these options
     interface: socketcan
@@ -176,9 +176,9 @@ connections:
     mosi: 24
     cs: 25
 
-  # if you want several button copy this configuration with different setting like this [conn_button2]
+  # if you want several button copy this configuration with different setting like this [conn_button2] #GPIO.setup(P8_8, GPIO.IN)
   button1:
-    load: yes
+    load: no
     module: fixgw.plugins.bbb_button
     btnkey: BTN1
     btnpin: P8_8
@@ -186,7 +186,7 @@ connections:
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
   button2:
-    load: yes
+    load: no
     module: fixgw.plugins.bbb_button
     btnkey: BTN2
     btnpin: P8_9
@@ -194,7 +194,7 @@ connections:
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
   button3:
-    load: yes
+    load: no
     module: fixgw.plugins.bbb_button
     btnkey: BTN3
     btnpin: P8_10
@@ -202,7 +202,7 @@ connections:
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
   button4:
-    load: yes
+    load: no
     module: fixgw.plugins.bbb_button
     btnkey: BTN4
     btnpin: P9_12
@@ -210,7 +210,7 @@ connections:
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
   button5:
-    load: yes
+    load: no
     module: fixgw.plugins.bbb_button
     btnkey: BTN5
     btnpin: P9_25
@@ -218,7 +218,7 @@ connections:
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
   button6:
-    load: yes
+    load: no
     module: fixgw.plugins.bbb_button
     btnkey: BTN6
     btnpin: P9_30
@@ -265,7 +265,7 @@ connections:
     Multiplier: 1.0
 
   grand_rapids_eis:
-    load: yes
+    load: no
     module: fixgw.plugins.grand_rapids_eis
     port: /dev/ttyO2
     model: 4000

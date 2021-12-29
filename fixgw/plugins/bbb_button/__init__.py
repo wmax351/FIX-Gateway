@@ -33,12 +33,12 @@ class MainThread(threading.Thread):
         """The calling object should pass itself as the parent.
            This gives the thread all the plugin goodies that the
            parent has."""
-        super(MainThread, self).__init__()
+        super()#(MainThread, self).__init__()
         self.getout = False   # indicator for when to stop
         self.parent = parent  # parent plugin object
-        self.log = parent.log  # simplifies logging
-        self.btnkey = parent.config['btnkey'] if ('btnkey' in parent.config) and parent.config['btnkey'] #else "BTN1"
-        self.btnpin = parent.config['btnpin'] if ('btnpin' in parent.config) and parent.config['btnpin'] #else 4
+        #self.log = parent.log  # simplifies logging
+        self.btnkey = parent.config['btnkey'] if ('btnkey' in parent.config) and parent.config['btnkey'] else "BTN1"
+        self.btnpin = parent.config['btnpin'] if ('btnpin' in parent.config) and parent.config['btnpin'] else "P8_8"
         self.rdelay = parent.config['rdelay'] if ('rdelay' in parent.config) and parent.config['rdelay'] else "0"
         #config-pin P9_14 gpio
         GPIO.setup(self.btnpin, GPIO.IN)
@@ -54,7 +54,7 @@ class MainThread(threading.Thread):
             time.sleep(0.05)
             self.count += 1
             input = GPIO.input(self.btnpin)
-            if ((not prev_input) and input):
+            if ((not self.prev_input) and input):
                     self.parent.db_write(self.btnkey, "True")
             else:
                     self.parent.db_write(self.btnkey, "False")
@@ -97,7 +97,7 @@ class Plugin(plugin.PluginBase):
         if self.thread.is_alive():
             raise plugin.PluginFail
         super(Plugin, self).stop()
-
+        
     def get_status(self):
         """ The get_status method should return a dict or OrderedDict that
         is basically a key/value pair of statistics"""
