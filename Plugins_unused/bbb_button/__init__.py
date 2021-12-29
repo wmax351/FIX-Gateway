@@ -33,7 +33,7 @@ class MainThread(threading.Thread):
         """The calling object should pass itself as the parent.
            This gives the thread all the plugin goodies that the
            parent has."""
-        super()#(MainThread, self).__init__()
+        super(MainThread, self).__init__()
         self.getout = False   # indicator for when to stop
         self.parent = parent  # parent plugin object
         #self.log = parent.log  # simplifies logging

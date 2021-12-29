@@ -23,7 +23,7 @@ setuptools.setup(
     url="https://github.com/wmax351/FIX-Gateway",
     packages=setuptools.find_packages(exclude=["tests.*", "tests"]),
     #package_data = {'fixgw':['config/*']},
-    install_requires = ['pyyaml','python-daemon', 'python-canfix'],
+    install_requires = ['pyyaml','python-daemon'],
     #data_files = datafiles,
     #scripts = ['bin/fixgw', 'bin/fixgwc'],
     #package_data= {'fixgw': ["config/default.yaml"]},
