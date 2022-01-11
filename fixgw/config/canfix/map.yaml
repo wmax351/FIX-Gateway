@@ -39,6 +39,8 @@ inputs:
   - { canid: 0x21F, index: 0, fixid: "MAP2", priority: 0 }
   - { canid: 0x220, index: 0, fixid: "OILP1", priority: 0 }
   - { canid: 0x221, index: 0, fixid: "OILP2", priority: 0 }
+  - { canid: 0x532, index: 0, fixid: "OILG1", priority: 0 }
+  - { canid: 0x533, index: 0, fixid: "OILG2", priority: 0 }
   - { canid: 0x222, index: 0, fixid: "OILT1", priority: 0 }
   - { canid: 0x223, index: 0, fixid: "OILT2", priority: 0 }
   - { canid: 0x500, index: 0, fixid: "CHT11", priority: 0 }
@@ -90,9 +92,9 @@ outputs:
   - { fixid: "BARO", canid: 0x190, index: 0, owner: False }
 
 # Special Input Functions
-encoders:
-    - { fixid: "ENC1, ENC2, BTN11", canid: 0x300, index: 0 }
-    - { fixid: "ENC3,ENC4,BTN12", canid: 0x301, index: 0 }
+#encoders:
+#    - { fixid: "ENC1, ENC2, BTN11", canid: 0x300, index: 0 }
+#    - { fixid: "ENC3,ENC4,BTN12", canid: 0x301, index: 0 }
 
 # Generic Switch Inputs
 switches:

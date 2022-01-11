@@ -45,24 +45,25 @@ class MainThread(threading.Thread):
 #        GPIO.setmode(GPIO.BCM)
 #        GPIO.setup(self.btnpin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
         self.count = 0
-        self.prev_input = 0
-# TODO !Not tested!
+        self.prev_input = 1
+
     def run(self):
         while True:
             if self.getout:
                 break
             time.sleep(0.05)
             self.count += 1
-            input = GPIO.input(self.btnpin)
-            if ((not self.prev_input) and input):
+            butinp = (GPIO.input(self.btnpin))
+            if ((not self.prev_input) and butinp == 0):
                     self.parent.db_write(self.btnkey, "True")
+                    #print(self.btnkey)
             else:
                     self.parent.db_write(self.btnkey, "False")
-            self.prev_input = input
+            self.prev_input = butinp
             if self.rdelay != 0:
                 self.prev_input = 0
                 time.sleep(self.rdelay)
-        self.running = False
+        self.running = True
 
     def stop(self):
         self.getout = True
@@ -84,7 +85,7 @@ class Plugin(plugin.PluginBase):
         block when calling this function.  If the plugin is simply a collection
         of callback functions, those can be setup here and no thread will be
         necessary"""
-        super(Plugin, self).run()
+        #super(Plugin, self).run()
         self.thread.start()
 
     def stop(self):
@@ -96,7 +97,7 @@ class Plugin(plugin.PluginBase):
             self.thread.join(1.0)
         if self.thread.is_alive():
             raise plugin.PluginFail
-        super(Plugin, self).stop()
+        #super(Plugin, self).stop()
         
     def get_status(self):
         """ The get_status method should return a dict or OrderedDict that

@@ -93,7 +93,7 @@ connections:
 
 #   CAN-FIX
   canfix:
-    load: yes
+    load: no
     module: fixgw.plugins.canfix
     # See the python-can documentation for the meaning of these options
     interface: socketcan
@@ -177,52 +177,53 @@ connections:
     cs: 25
 
   # if you want several button copy this configuration with different setting like this [conn_button2] #GPIO.setup(P8_8, GPIO.IN)
-#  button1:
-#    load: no
-#    module: fixgw.plugins.bbb_button
-#    btnkey: BTN1
-#    btnpin: P8_8
-#    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+  button1:
+    load: no
+    module: fixgw.plugins.bbb_button
+    btnkey: BTN1
+    btnpin: P8_8
+    rdelay: 0.1 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-#  button2:
-#    load: no
-#    module: fixgw.plugins.bbb_button
-#    btnkey: BTN2
-#    btnpin: P8_9
-#    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+  button2:
+    load: no
+    module: fixgw.plugins.bbb_button
+    btnkey: BTN2
+    btnpin: P8_9
+    rdelay: 0.1 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-#  button3:
-#    load: no
-#    module: fixgw.plugins.bbb_button
-#    btnkey: BTN3
-#    btnpin: P8_10
-#    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+  button3:
+    load: no
+    module: fixgw.plugins.bbb_button
+    btnkey: BTN3
+    btnpin: P8_10
+    rdelay: 0.1 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-#  button4:
-#    load: no
-#    module: fixgw.plugins.bbb_button
-#    btnkey: BTN4
-#    btnpin: P9_12
-#    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+  button4:
+    load: no
+    module: fixgw.plugins.bbb_button
+    btnkey: BTN4
+    btnpin: P9_12
+    rdelay: 0.1 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-#  button5:
-#    load: no
-#    btnkey: BTN5
-#    module: fixgw.plugins.bbb_button
-#    btnpin: P9_25
-#    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+  button5:
+    load: no
+    btnkey: BTN5
+    module: fixgw.plugins.bbb_button
+    btnpin: P9_25
+    rdelay: 0.1 # 0 for debouncing or time in seconde to determine the repeat delay
 
   # if you want several button copy this configuration with different setting like this [conn_button2]
-#  button6:
-#    load: no
-#    module: fixgw.plugins.bbb_button
-#    btnkey: BTN6
-#    btnpin: P9_30
-#    rdelay: 0 # 0 for debouncing or time in seconde to determine the repeat delay
+  button6:
+    load: no
+    module: fixgw.plugins.bbb_button
+    btnkey: BTN6
+    btnpin: P9_30
+    rdelay: 0.1 # 0 for debouncing or time in seconde to determine the repeat delay
+
 
   # RAIS Protocol Interface
   rais:
@@ -246,6 +247,9 @@ connections:
       - function: max
         inputs: ["CHT11", "CHT12", "CHT13", "CHT14"]
         output: CHTMAX1
+      - function: max
+        inputs: ["EGT11", "EGT12", "EGT13", "EGT14"]
+        output: EGTMAX1
      # - function: sum
       #  inputs: ["FUELQ1", "FUELQ2"]
        # output: FUELQT

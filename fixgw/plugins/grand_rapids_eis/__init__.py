@@ -163,6 +163,12 @@ class MainThread(threading.Thread):
                 self.parent.db_write("OAT", oat)
                 self.parent.db_write("ALT", altitude)
                 self.parent.db_write("H2OT1", coolant)
+                # need to correct analogs
+                self.parent.db_write("ANLG1", aux1)
+                self.parent.db_write("ANLG2", aux2)
+                self.parent.db_write("ANLG3", aux3)
+                self.parent.db_write("ANLG4", aux4)
+                
 
         self.running = False
 
