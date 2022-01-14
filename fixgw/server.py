@@ -37,11 +37,11 @@ import fixgw.plugin as plugin
 config_filename = "default.yaml"
 user_home = os.path.expanduser("~")
 prefix_path = sys.prefix
-path_options = ['{USER}/.makerplane/fixgw/config',
+path_options = ['fixgw/config',
+                '{USER}/.makerplane/fixgw/config',
                 '{PREFIX}/local/etc/fixgw',
                 '{PREFIX}/etc/fixgw',
                 '/etc/fixgw',
-                'fixgw/config',
                 '.']
 config_path = None
 
