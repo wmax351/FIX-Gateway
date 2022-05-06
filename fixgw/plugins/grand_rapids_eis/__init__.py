@@ -126,7 +126,7 @@ class MainThread(threading.Thread):
                 oilt = int((int.from_bytes(s[42:44], "big")))
                 oilp = s[44]
                 aux1 = int.from_bytes(s[45:47], "big")
-                aux2 = int.from_bytes(s[47:49], "big")
+                aux2 = int.from_bytes(s[47:49], "big")/10
                 aux3 = int.from_bytes(s[49:51], "big")
                 aux4 = int.from_bytes(s[51:53], "big")
                 coolant = int((int.from_bytes(s[53:55], "big")))
